@@ -1,6 +1,28 @@
+
+
+# Read symbols from a text file
+filename = 'C:/Users/48512/Desktop/symbols.txt'
+with open(filename, 'r') as file:
+    INS_gene_nucleotides = file.read()
+
 #Fragment of code for transcription of DNA
 
+def replace_char(string, old_char, new_char):
+    return string.replace(old_char, new_char)
 
+old_char = "U"
+new_char = "T"
+
+with open(filename, "r") as file:
+    data = file.read()
+
+data = replace_char(data, old_char, new_char)
+
+with open(filename, "w") as file:
+    file.write(data)
+
+
+    # Test the function
 
 #Fragment of code for counting single nucleotides and whole sequence
 def count_whole_sequence(string):
@@ -37,17 +59,7 @@ def count_guanine(string):
     return guanine_counter
 
 
-def transcription_from_RNA_to_DNA(string):
-    for RNA_to_DNA in string:
-        if RNA_to_DNA == "T":
-            RNA_to_DNA.replace("T", "U")
 
-    return RNA_to_DNA
-
-# Read symbols from a text file
-filename = 'C:/Users/48512/Desktop/symbols.txt'
-with open(filename, 'r') as file:
-    INS_gene_nucleotides = file.read()
 
 #Variables for the sequence counter
 adenine_nucleotides = count_adenine(INS_gene_nucleotides)
@@ -56,14 +68,10 @@ cytosine_nucleotides = count_cytosine(INS_gene_nucleotides)
 guanine_nucleotides = count_guanine(INS_gene_nucleotides)
 nucleotide_counter = count_whole_sequence(INS_gene_nucleotides)
 
-#variable for transcription
-transcription_from_RNA_to_DNA_sequence = transcription_from_RNA_to_DNA(INS_gene_nucleotides)
-
-#Printer
+#Printed returns
 
 print("Number of single adenine nucleotides:", adenine_nucleotides)
 print("Number of single thymine nucleotides:", thymine_nucleotides)
 print("Number of single cytosine nucleotides:", cytosine_nucleotides)
 print("Number of single guanine nucleotides:", guanine_nucleotides)
 print("Size of the sequence: ", nucleotide_counter)
-print("Sequence\n", transcription_from_RNA_to_DNA_sequence)
